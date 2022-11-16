@@ -3,7 +3,7 @@ import {MainLayouts} from "../../Components/layouts";
 import {useRouter} from "next/router";
 import { GetStaticPaths, GetStaticProps } from "next";
 import type { NextPage } from 'next';
-import {Card, Col, Container, Grid, Image, Row, Text} from "@nextui-org/react";
+import {Button, Card, Col, Container, Grid, Image, Row, Text} from "@nextui-org/react";
 import {PokeDetails} from "../../interfaces";
 import pokeApi from "../../api/PokeApi";
 
@@ -14,41 +14,51 @@ interface Props {
 
 const PokeProfile:NextPage<Props> = ({pokemon}) => {
 
+    console.log(pokemon)
     return (
         <MainLayouts titlePage={'PokeProfile'}>
-            <Container>
-                <Grid>
-                    <Card.Header>
-                        <Text
-                            h1
-                            weight={'bold'}
-                            css={{textAlign:'center'}}
-                        >Pokemon Found it</Text>
-                    </Card.Header>
-                    <Card.Body css={{p:1}}>
-                        <Row gap={1} justify={'center'} align={'center'}>
+            <Grid.Container css={{marginTop:'5px'}} gap={2}>
+                <Grid xs={12} sm={4} md={4}>
+                    <Card css={{p:30}}>
+                        <Card.Body>
                             <Card.Image
-                                src={pokemon.sprites.front_default}
-                                width={'40%'}
+                                src={pokemon.sprites.other?.dream_world.front_default}
+                                alt={pokemon.name}
+                                width={'100%'}
                                 height={200}
-                                objectFit={'contain'}
                             />
-                        </Row>
-                        <Row gap={3} css={{p:5}}>
-                            <Row align={'center'}>
-                                <h1>Weight: {pokemon.weight}</h1>
-                            </Row>
-                            {
-                                pokemon.abilities.map((x) => (
-                                    <Row align={'center'} key={pokemon.id}>
-                                        <h1>Abilities: {x.ability.name}</h1>
-                                    </Row>
-                                ))
-                            }
-                        </Row>
-                    </Card.Body>
+                        </Card.Body>
+                    </Card>
                 </Grid>
-            </Container>
+                <Grid xs={12} sm={8} md={8}>
+                    <Card>
+                        <Card.Header css={{display:'flex', justifyContent:'space-between'}}>
+                            <Text h1>{pokemon.name}</Text>
+                            <Button color={'gradient'} ghost>Guardar</Button>
+                        </Card.Header>
+                        <Card.Body>
+                            <Text size={30}>Sprites</Text>
+                            <Container gap={0} display={'flex'} direction={'row'}>
+                                <Image
+                                    src={pokemon.sprites.front_default}
+                                    width={'100%'}
+                                    alt={pokemon.name}
+                                />
+                                <Image
+                                    src={pokemon.sprites.front_shiny}
+                                    width={'100%'}
+                                    alt={pokemon.name}
+                                />
+                                <Image
+                                    src={pokemon.sprites.back_shiny}
+                                    width={'100%'}
+                                    alt={pokemon.name}
+                                />
+                            </Container>
+                        </Card.Body>
+                    </Card>
+                </Grid>
+            </Grid.Container>
         </MainLayouts>
     )
 }
