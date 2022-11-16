@@ -40,7 +40,7 @@ const PokeProfile:NextPage<Props> = ({pokemon}) => {
                             </Row>
                             {
                                 pokemon.abilities.map((x) => (
-                                    <Row align={'center'}>
+                                    <Row align={'center'} key={pokemon.id}>
                                         <h1>Abilities: {x.ability.name}</h1>
                                     </Row>
                                 ))
