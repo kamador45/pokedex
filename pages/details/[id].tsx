@@ -41,17 +41,20 @@ const PokeProfile:NextPage<Props> = ({pokemon}) => {
                             <Container gap={0} display={'flex'} direction={'row'}>
                                 <Image
                                     src={pokemon.sprites.front_default}
-                                    width={'100%'}
+                                    width={200}
+                                    height={200}
                                     alt={pokemon.name}
                                 />
                                 <Image
                                     src={pokemon.sprites.front_shiny}
-                                    width={'100%'}
+                                    width={200}
+                                    height={200}
                                     alt={pokemon.name}
                                 />
                                 <Image
                                     src={pokemon.sprites.back_shiny}
-                                    width={'100%'}
+                                    width={200}
+                                    height={200}
                                     alt={pokemon.name}
                                 />
                             </Container>
